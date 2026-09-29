@@ -1,7 +1,7 @@
 # Build Plan
 
 <!-- remaining-tally -->
-**Remaining:** AGENT 0 · LOCAL 0 · CLOUD 0 · AUTO 0 · HUMAN 0 · ADB 0 · **0 open**
+**Remaining:** AGENT 0 · LOCAL 0 · CLOUD 0 · AUTO 2 · HUMAN 0 · ADB 0 · **2 open**
 <!-- /remaining-tally -->
 
 ### Product (do not drift)
@@ -83,7 +83,8 @@ _No cloud agent items._
 > Auto-managed. Do not hand-edit rows inside the markers. Run `python3 scripts/agent-run.py sync-open-prs-build-plan -- --apply` (or `/resume` / `/dependabot`).
 
 <!-- open-prs-sync:begin -->
-_No open Dependabot or Release Please PRs._
+- 🔲 [AUTO] Merge Dependabot [#2](https://github.com/edwardlthompson/starrupture-city-planner/pull/2) (Bump the web-dependencies group in /examples/web with 5 updates)
+- 🔲 [AUTO] Merge Dependabot [#1](https://github.com/edwardlthompson/starrupture-city-planner/pull/1) (Bump the node-dependencies group in /examples/node with 4 updates)
 <!-- open-prs-sync:end -->
 
 ### Template gaps (synced)
