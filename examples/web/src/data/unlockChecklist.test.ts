@@ -24,10 +24,7 @@ describe("STARRUPTURE_UNLOCK_CHECKLIST", () => {
 
   it("forms a contiguous 1..N order (validateOrdering passes)", () => {
     const result = validateOrdering(STARRUPTURE_UNLOCK_CHECKLIST);
-    expect(
-      result,
-      `ordering invalid: ${JSON.stringify((result as { errors: string[] }).errors)}`,
-    ).toMatchObject({ ok: true });
+    expect(result, `ordering invalid: ${JSON.stringify(result)}`).toMatchObject({ ok: true });
   });
 
   it("orders are 1-based and sequential", () => {
