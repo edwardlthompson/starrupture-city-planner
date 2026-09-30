@@ -1318,6 +1318,32 @@ Post-M19 review: close prompt/read-order gaps and enforce CURSOR_MODES in bootst
 
 - ✅ [AGENT] Archive M18 sprint body; slim board to maintenance + human open items
 
+## StarRupture build sprints 0–3 + post-MVP prioritization (2026-09-29)
+
+Archived from `BUILD_PLAN.md` after Sprints 0–3 ✅ AGENT rows and post-MVP prioritization were completed. Open HUMAN/AUTO rows (canonical building list, sprint approvals, playtest, real-browser install check, Sprint 0 sign-off, open PRs) stayed on the active board.
+
+- ✅ [AGENT][LOCAL] Sprint 0: copy `AGENT.md.example` → `AGENT.md` (original brief verbatim) — scope: AGENT.md
+- ✅ [AGENT][LOCAL] Sprint 0: run `scripts/init-project.sh|.ps1` (`--stack web --non-interactive`) — scope: scripts/
+- ✅ [AGENT][LOCAL] Sprint 0: fill `branding/product.json` (`mode: product`) + sync tokens and README — scope: branding/
+- ✅ [AGENT][LOCAL] Sprint 0: run `scripts/setup-github-repo.sh` (repo description, topics, branch protection, Dependabot alerts, private vuln reporting via `gh`) — scope: scripts/
+- ✅ [HUMAN] Sprint 0: template used on GitHub — repo `edwardlthompson/starrupture-city-planner` (public) created
+- ✅ [HUMAN] Sprint 0: FOSS locked — `bootstrap.config.json` `distribution_tier: foss`, MIT
+- ✅ [HUMAN] Sprint 0: `docs/INITIALIZATION_PROMPT.md` filled (dimensions, goals, non-goals, success metrics)
+- ✅ [HUMAN] Sprint 0: not using Cursor — Cline in VS Code; `/bootstrap`-equivalent via batch scripts
+- ✅ [HUMAN] Sprint 0: `docs/help/BATCH_COMMANDS.md` bookmarked in VS Code
+- ✅ [AGENT][LOCAL] Sprint 1: domain types + runtime validation — `Building`, `UnlockEntry`, `LayoutCell`, `CityLayout` (unit tests) — scope: examples/web/src/core/
+- ✅ [AGENT][LOCAL] Sprint 1: StarRupture building catalog + unlock checklist static data (tests) — scope: examples/web/src/data/
+- ✅ [AGENT][LOCAL] Sprint 1: pure logic — unlock status, West→East ordering, placement rules (tests) — scope: examples/web/src/logic/
+- ✅ [AGENT][LOCAL] Sprint 1: enforce `check-file-limits` (static data ≤300, logic ≤150) — scope: examples/web/src/
+- ✅ [AGENT][LOCAL] Sprint 2: feature container + i18n keys (en/es) + route registration — scope: examples/web/src/features/
+- ✅ [AGENT][LOCAL] Sprint 2: unlock checklist component (mark unlocked/locked, search/filter) + unit tests — scope: examples/web/src/features/unlock/
+- ✅ [AGENT][LOCAL] Sprint 2: building library component (grid, unlock state, filter) + unit tests — scope: examples/web/src/features/library/
+- ✅ [AGENT][LOCAL] Sprint 2: Playwright e2e for checklist + library (axe a11y) — scope: examples/web/e2e/
+- ✅ [AGENT][LOCAL] Sprint 3: grid geometry + snap-to-grid math (unit tests) — scope: examples/web/src/board/grid/
+- ✅ [AGENT][LOCAL] Sprint 3: drag/drop placement + overlap/collision rules (unit tests) — scope: examples/web/src/board/dnd/
+- ✅ [AGENT][LOCAL] Sprint 3: board view + i18n (en/es) + view transitions — scope: examples/web/src/board/ui/
+- ✅ [HUMAN] Post-MVP priority order: Theming → Export/import → Multi-city (now Sprint 2 rows 1→2→3 on the active board)
+
 ## BUILD_PLAN cleanup (2026-06-16, M18 complete)
 
 - ✅ [AGENT] Archive M18 sequential; slim board to P2 backlog + human open items

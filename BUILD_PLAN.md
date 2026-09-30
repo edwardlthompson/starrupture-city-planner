@@ -56,65 +56,29 @@ Copy this shape when you add sprints: `### Sprint N — title`, then numbered ro
 **First milestone:** Unlock-checklist data model + seeded localStorage persistence + a working grid view where the user can place/checklist-toggle buildings and save their plan — fully offline, Lighthouse ≥ 0.9 floors met.
 <!-- product-brief-sync:end -->
 
-### Sprint 0 — Customize
+### Sprint 0 — Sign-off
 
-<!-- parallel_exception: stack not selected until init -->
+<!-- parallel_exception: CI sign-off is script-driven, not agent-scoped -->
 
-1. ✅ [AGENT][LOCAL] Copy `AGENT.md.example` → `AGENT.md` and paste the original brief verbatim (before init) — scope: AGENT.md
-2. ✅ [AGENT][LOCAL] Run `scripts/init-project.sh` or `.ps1` (`--stack`; scripted: `--non-interactive --project-name --purpose`) — scope: scripts/
-3. ✅ [AGENT][LOCAL] Fill `branding/product.json` (`mode: product`); sync tokens + README — scope: branding/
-4. ✅ [AGENT][LOCAL] Run `scripts/setup-github-repo.sh` (`gh` admin) — scope: scripts/
-5. 🔲 [AUTO] Sprint 0 sign-off on `main`: `validate-bootstrap --quick` · `feature-gate --stack <active>` · `check-github-ci --wait 300` (CI, Security Scan, CodeQL) · `check-license-compliance`
-6. ✅ [HUMAN] Use this template on GitHub — repo `edwardlthompson/starrupture-city-planner` created from template (public)
-7. ✅ [HUMAN] Pick FOSS vs Commercial (`init-project.sh --distribution-tier`) — **FOSS locked**: `bootstrap.config.json` `distribution_tier: foss`, MIT
-8. ✅ [HUMAN] Fill `docs/INITIALIZATION_PROMPT.md` — filled: dimensions, goals, non-goals, success metrics, FOSS/MIT distribution
-9. ✅ [HUMAN] Pick Cursor mode (`docs/CURSOR_MODES.md`) — **Not using Cursor**: Cline in VS Code (see `.vscode/`); `/bootstrap`-equivalent via batch scripts
-10. ✅ [HUMAN] Bookmark `docs/help/BATCH_COMMANDS.md` (`/bootstrap`) — bookmarked in VS Code; run the batch scripts directly (`python scripts/agent-run.py …`)
+1. 🔲 [AUTO] Sprint 0 sign-off on `main`: `validate-bootstrap --quick` · `feature-gate --stack <active>` · `check-github-ci --wait 300` (CI, Security Scan, CodeQL) · `check-license-compliance`
 
-### Sprint 1 — Core domain & building catalog
+### Sprint 1 — Domain open items
 
-<!-- parallel_exception: domain types are the shared lock; Sprint 2+ UI slices depend on them -->
+<!-- parallel_exception: human source-of-truth + approval rows; AGENT work archived in COMPLETED_TASKS.md -->
 
-StarRupture's fixed building set + unlock model. Lock before any UI.
+1. 🔲 [HUMAN] Provide the canonical building list + unlock order, verbatim from the game (source of truth) — scope: examples/web/src/data/
+2. 🔲 [HUMAN] Approve the domain model (ADR-0001) and Sprint 1
 
-1. ✅ [AGENT][LOCAL] Define domain types + runtime validation — `Building`, `UnlockEntry`, `LayoutCell`, `CityLayout` (unit tests) — scope: examples/web/src/core/
-2. ✅ [AGENT][LOCAL] Seed the StarRupture building catalog + unlock checklist as static data (tests) — scope: examples/web/src/data/
-3. ✅ [AGENT][LOCAL] Pure logic: unlock status, West→East ordering, placement rules (tests) — scope: examples/web/src/logic/
-4. 🔲 [HUMAN] Provide the canonical building list + unlock order, verbatim from the game (source of truth) — scope: examples/web/src/data/
-5. ✅ [AGENT][LOCAL] Enforce `check-file-limits` (static data ≤300 lines, logic ≤150); split as needed — scope: examples/web/src/
-6. 🔲 [HUMAN] Approve the domain model (ADR-0001) and Sprint 1
+### Sprint 2 — Golden Path open items
 
-### Sprint 2 — Golden Path: unlock checklist + building library
+<!-- parallel_exception: human verification + approval rows; AGENT work archived in COMPLETED_TASKS.md -->
 
-<!-- agent_count_target: 3 -->
+1. 🔲 [HUMAN] Verify building names + unlock copy against the real game
+2. 🔲 [HUMAN] Approve Sprint 2 after `smoke-sprint --require`
 
-First end-to-end vertical slice: mark what's unlocked, browse the building set.
+### Sprint 3 — Board playtest
 
-#### Sequential
-1. ✅ [AGENT][LOCAL] Feature container + i18n keys (en/es) + route registration — scope: examples/web/src/features/
-
-#### Parallel
-| Task | Owner | Scope |
-|------|-------|-------|
-| ✅ Unlock checklist component (mark unlocked/locked, search/filter) + unit tests | AGENT[LOCAL] | `examples/web/src/features/unlock/` |
-| ✅ Building library component (grid, unlock state, filter) + unit tests | AGENT[LOCAL] | `examples/web/src/features/library/` |
-| ✅ Playwright e2e for checklist + library (axe a11y) | AGENT[LOCAL] | `examples/web/e2e/` |
-
-2. 🔲 [HUMAN] Verify building names + unlock copy against the real game
-3. 🔲 [HUMAN] Approve Sprint 2 after `smoke-sprint --require`
-
-### Sprint 3 — Layout board (snap-to-grid drag/drop)
-
-<!-- agent_count_target: 3 -->
-
-Place unlocked buildings on a West→East grid with collision rules.
-
-#### Parallel
-| Task | Owner | Scope |
-|------|-------|-------|
-| ✅ Grid geometry + snap-to-grid math (unit tests) | AGENT[LOCAL] | `examples/web/src/board/grid/` |
-| ✅ Drag/drop placement + overlap/collision rules (unit tests) | AGENT[LOCAL] | `examples/web/src/board/dnd/` |
-| ✅ Board view + i18n (en/es) + view transitions | AGENT[LOCAL] | `examples/web/src/board/ui/` |
+<!-- parallel_exception: human playtest row; AGENT work archived in COMPLETED_TASKS.md -->
 
 1. 🔲 [HUMAN] Playtest layout UX (snap feel, grid size, West→East orientation)
 
@@ -131,10 +95,11 @@ Place unlocked buildings on a West→East grid with collision rules.
 
 <!-- parallel_exception: roadmap items; each ships as its own vertical slice later -->
 
-1. 🔲 [AGENT][LOCAL] Multi-city layout support (separate boards) — scope: examples/web/src/
+Order: Theming (1) → Export/import (2) → Multi-city (3).
+
+1. 🔲 [AGENT][LOCAL] Theming (light/dark, `prefers-color-scheme`) — scope: examples/web/src/
 2. 🔲 [AGENT][LOCAL] Export/import layouts (JSON) — scope: examples/web/src/
-3. 🔲 [AGENT][LOCAL] Theming (light/dark, `prefers-color-scheme`) — scope: examples/web/src/
-4. ✅ [HUMAN] Prioritize post-MVP order — **Theming first** (row 3), then Export/import (row 2), then Multi-city (row 1)
+3. 🔲 [AGENT][LOCAL] Multi-city layout support (separate boards) — scope: examples/web/src/
 
 ### Waiting on a person
 
