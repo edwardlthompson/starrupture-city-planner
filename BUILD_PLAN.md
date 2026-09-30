@@ -1,7 +1,7 @@
 # Build Plan — StarRupture City Planner
 
 <!-- remaining-tally -->
-**Remaining:** AGENT 11 · LOCAL 11 · CLOUD 0 · AUTO 3 · HUMAN 6 · ADB 0 · **20 open**
+**Remaining:** AGENT 7 · LOCAL 7 · CLOUD 0 · AUTO 3 · HUMAN 6 · ADB 0 · **16 open**
 <!-- /remaining-tally -->
 
 Live board for this product repo. Finished work: [`COMPLETED_TASKS.md`](COMPLETED_TASKS.md).
@@ -77,11 +77,11 @@ Copy this shape when you add sprints: `### Sprint N — title`, then numbered ro
 
 StarRupture's fixed building set + unlock model. Lock before any UI.
 
-1. 🔲 [AGENT][LOCAL] Define domain types + runtime validation — `Building`, `UnlockEntry`, `LayoutCell`, `CityLayout` (unit tests) — scope: examples/web/src/core/
-2. 🔲 [AGENT][LOCAL] Seed the StarRupture building catalog + unlock checklist as static data (tests) — scope: examples/web/src/data/
-3. 🔲 [AGENT][LOCAL] Pure logic: unlock status, West→East ordering, placement rules (tests) — scope: examples/web/src/logic/
+1. ✅ [AGENT][LOCAL] Define domain types + runtime validation — `Building`, `UnlockEntry`, `LayoutCell`, `CityLayout` (unit tests) — scope: examples/web/src/core/
+2. ✅ [AGENT][LOCAL] Seed the StarRupture building catalog + unlock checklist as static data (tests) — scope: examples/web/src/data/
+3. ✅ [AGENT][LOCAL] Pure logic: unlock status, West→East ordering, placement rules (tests) — scope: examples/web/src/logic/
 4. 🔲 [HUMAN] Provide the canonical building list + unlock order, verbatim from the game (source of truth) — scope: examples/web/src/data/
-5. 🔲 [AGENT][LOCAL] Enforce `check-file-limits` (static data ≤300 lines, logic ≤150); split as needed — scope: examples/web/src/
+5. ✅ [AGENT][LOCAL] Enforce `check-file-limits` (static data ≤300 lines, logic ≤150); split as needed — scope: examples/web/src/
 6. 🔲 [HUMAN] Approve the domain model (ADR-0001) and Sprint 1
 
 ### Sprint 2 — Golden Path: unlock checklist + building library
@@ -96,9 +96,9 @@ First end-to-end vertical slice: mark what's unlocked, browse the building set.
 #### Parallel
 | Task | Owner | Scope |
 |------|-------|-------|
-| Unlock checklist component (mark unlocked/locked, search/filter) + unit tests | AGENT | `examples/web/src/features/unlock/` |
-| Building library component (grid, unlock state, filter) + unit tests | AGENT | `examples/web/src/features/library/` |
-| Playwright e2e for checklist + library (axe a11y) | AGENT | `examples/web/e2e/` |
+| Unlock checklist component (mark unlocked/locked, search/filter) + unit tests | AGENT[LOCAL] | `examples/web/src/features/unlock/` |
+| Building library component (grid, unlock state, filter) + unit tests | AGENT[LOCAL] | `examples/web/src/features/library/` |
+| Playwright e2e for checklist + library (axe a11y) | AGENT[LOCAL] | `examples/web/e2e/` |
 
 2. 🔲 [HUMAN] Verify building names + unlock copy against the real game
 3. 🔲 [HUMAN] Approve Sprint 2 after `smoke-sprint --require`
@@ -112,9 +112,9 @@ Place unlocked buildings on a West→East grid with collision rules.
 #### Parallel
 | Task | Owner | Scope |
 |------|-------|-------|
-| Grid geometry + snap-to-grid math (unit tests) | AGENT | `examples/web/src/board/grid/` |
-| Drag/drop placement + overlap/collision rules (unit tests) | AGENT | `examples/web/src/board/dnd/` |
-| Board view + i18n (en/es) + view transitions | AGENT | `examples/web/src/board/ui/` |
+| Grid geometry + snap-to-grid math (unit tests) | AGENT[LOCAL] | `examples/web/src/board/grid/` |
+| Drag/drop placement + overlap/collision rules (unit tests) | AGENT[LOCAL] | `examples/web/src/board/dnd/` |
+| Board view + i18n (en/es) + view transitions | AGENT[LOCAL] | `examples/web/src/board/ui/` |
 
 1. 🔲 [HUMAN] Playtest layout UX (snap feel, grid size, West→East orientation)
 
