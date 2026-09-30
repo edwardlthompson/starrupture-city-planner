@@ -1208,7 +1208,7 @@ Post-commit review: TEMPLATE_INDEX drift, START_HERE path consistency, stale arc
 - ✅ [AGENT] Resolve stale M25 commit-blocker note in `COMPLETED_TASKS.md`
 - ✅ [AUTO] Validate: bootstrap --quick, template-index, feature-gate, simulate-template-upgrade
 
-**Deferred (no action):** CHANGELOG historical mojibake (`ΓÇö`) and legacy semver order — cosmetic; high diff noise.
+**Deferred (no action):** CHANGELOG historical mojibake (`—`) and legacy semver order — cosmetic; high diff noise.
 
 ## BUILD_PLAN cleanup (2026-06-17, M26 complete)
 
