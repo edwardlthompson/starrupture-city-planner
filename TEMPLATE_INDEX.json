@@ -1,5 +1,5 @@
 {
-  "template_version": "1.8.0",
+  "template_version": "1.9.0",
   "project": {
     "name": "StarRupture",
     "purpose": "Offline PWA to plan West-to-East StarRupture city layouts from an unlock checklist",

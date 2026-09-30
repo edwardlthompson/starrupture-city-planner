@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0](https://github.com/edwardlthompson/starrupture-city-planner/compare/v1.8.0...v1.9.0) (2026-09-30)
+
+
+### Added
+
+* **sprint-1:** core domain, building catalog, unlock logic (73 tests) ([1681320](https://github.com/edwardlthompson/starrupture-city-planner/commit/1681320f03c1bfe73a44ea60a2956a3ccd9a1bbd))
+* **sprint-2:** unlock checklist + building library + planner route ([90c5cee](https://github.com/edwardlthompson/starrupture-city-planner/commit/90c5ceec5383e2085f1a907bce792b893e30d080))
+* **sprint-3:** layout board - grid snap, drag-and-drop, collision rules, board view ([764b509](https://github.com/edwardlthompson/starrupture-city-planner/commit/764b5090f6836caa04fc2d108b1081cfdb475435))
+
+
+### Fixed
+
+* **core:** harden validate.ts null-narrowing and tidy checklist test ([97ee16e](https://github.com/edwardlthompson/starrupture-city-planner/commit/97ee16ed5f4f91e4dd42e57ffeec266eb3d8a502))
+* repair cp437-mangled UTF-8 (emoji/dashes) in build plan, changelog, tasks ([94a41a4](https://github.com/edwardlthompson/starrupture-city-planner/commit/94a41a4a65a2c102736e7e2d2600c7cc0f395549))
+
 ## [Unreleased]
 
 ## [1.8.0](https://github.com/edwardlthompson/agent-project-bootstrap/compare/v1.7.0...v1.8.0) (2026-09-17)
