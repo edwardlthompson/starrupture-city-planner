@@ -1,4 +1,4 @@
-export type GpRoute = "home" | "settings" | "about" | "feedback";
+export type GpRoute = "home" | "settings" | "about" | "feedback" | "planner";
 export type FeedbackKind = "bug" | "feature";
 
 export type NavState = {
@@ -8,4 +8,4 @@ export type NavState = {
   promptOpen: boolean;
 };
 
-export const PANEL_ROUTES: readonly GpRoute[] = ["settings", "about", "feedback"];
+export const PANEL_ROUTES: readonly GpRoute[] = ["settings", "about", "feedback", "planner"];

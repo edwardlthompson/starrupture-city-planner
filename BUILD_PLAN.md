@@ -91,14 +91,14 @@ StarRupture's fixed building set + unlock model. Lock before any UI.
 First end-to-end vertical slice: mark what's unlocked, browse the building set.
 
 #### Sequential
-1. 🔲 [AGENT][LOCAL] Feature container + i18n keys (en/es) + route registration — scope: examples/web/src/features/
+1. ✅ [AGENT][LOCAL] Feature container + i18n keys (en/es) + route registration — scope: examples/web/src/features/
 
 #### Parallel
 | Task | Owner | Scope |
 |------|-------|-------|
-| Unlock checklist component (mark unlocked/locked, search/filter) + unit tests | AGENT[LOCAL] | `examples/web/src/features/unlock/` |
-| Building library component (grid, unlock state, filter) + unit tests | AGENT[LOCAL] | `examples/web/src/features/library/` |
-| Playwright e2e for checklist + library (axe a11y) | AGENT[LOCAL] | `examples/web/e2e/` |
+| ✅ Unlock checklist component (mark unlocked/locked, search/filter) + unit tests | AGENT[LOCAL] | `examples/web/src/features/unlock/` |
+| ✅ Building library component (grid, unlock state, filter) + unit tests | AGENT[LOCAL] | `examples/web/src/features/library/` |
+| ✅ Playwright e2e for checklist + library (axe a11y) | AGENT[LOCAL] | `examples/web/e2e/` |
 
 2. 🔲 [HUMAN] Verify building names + unlock copy against the real game
 3. 🔲 [HUMAN] Approve Sprint 2 after `smoke-sprint --require`

@@ -57,5 +57,20 @@
   "feedback.discard": "Discard",
   "feedback.offline": "You are offline. Copy still works; Open GitHub needs a network.",
   "feedback.clipboard.hint": "Review the sanitized preview. The OS clipboard may keep a copy after Discard.",
-  "feedback.crash.title": "The app recovered. Review and send a report?"
+  "feedback.crash.title": "The app recovered. Review and send a report?",
+  "planner.open": "Planner",
+  "planner.title": "StarRupture City Planner",
+  "planner.close": "Close planner",
+  "planner.checklist.title": "Unlock Checklist",
+  "planner.checklist.search": "Search buildings…",
+  "planner.checklist.empty": "No buildings match that search.",
+  "planner.checklist.count": "{unlocked} of {total} unlocked",
+  "planner.checklist.unlocked": "Unlocked",
+  "planner.checklist.locked": "Locked",
+  "planner.library.title": "Building Library",
+  "planner.library.filter.all": "All",
+  "planner.library.filter.unlocked": "Unlocked",
+  "planner.library.filter.locked": "Locked",
+  "planner.library.slot_span": "{span} slots",
+  "planner.library.empty": "No buildings match that filter."
 }

@@ -5,7 +5,13 @@ export function homeNav(): NavState {
 }
 
 export function isRoute(value: unknown): value is GpRoute {
-  return value === "home" || value === "settings" || value === "about" || value === "feedback";
+  return (
+    value === "home" ||
+    value === "settings" ||
+    value === "about" ||
+    value === "feedback" ||
+    value === "planner"
+  );
 }
 
 export function normalizeStack(raw: readonly unknown[]): GpRoute[] {

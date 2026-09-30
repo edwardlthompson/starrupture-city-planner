@@ -20,9 +20,9 @@ export const STARRUPTURE_BUILDINGS: readonly Building[] = [
   { id: "comms-array", name: "Comms Array", slotSpan: 1 },
   { id: "foundry", name: "Foundry", slotSpan: 2 },
   { id: "reactor", name: "Reactor", slotSpan: 2 },
-  { id: "docks", name: "Docks", slotSpan: 1 },
   { id: "beacon", name: "Beacon", slotSpan: 1 },
   { id: "vault", name: "Vault", slotSpan: 1 },
+  { id: "airdock", name: "Airdock", slotSpan: 1 },
 ];
 
 /** Look up a building by id; undefined when absent. */
