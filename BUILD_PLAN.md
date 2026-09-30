@@ -1,86 +1,148 @@
-# Build Plan
+# Build Plan ΓÇö StarRupture City Planner
 
 <!-- remaining-tally -->
 **Remaining:** AGENT 0 · LOCAL 0 · CLOUD 0 · AUTO 2 · HUMAN 0 · ADB 0 · **2 open**
 <!-- /remaining-tally -->
 
-### Product (do not drift)
+Live board for this product repo. Finished work: [`COMPLETED_TASKS.md`](COMPLETED_TASKS.md).
+Product brief (sacred): [`AGENT.md`](AGENT.md).
 
-> Auto-managed from `AGENT.md` after init. Do not hand-edit inside markers. Read `AGENT.md` before any sprint row.
+**Who:** `AGENT` code ┬╖ `HUMAN` person ┬╖ `ADB` device ┬╖ `AUTO` CI/scripts
+**Venue (AGENT only):** `[LOCAL]` This Computer ┬╖ `[CLOUD]` Cursor Cloud ΓÇö [`docs/adr/0008-agent-venue.md`](docs/adr/0008-agent-venue.md)
+**State:** ≡ƒö▓ open ┬╖ Γ£à done ┬╖ Γ¥î blocked ΓÇö reason
 
-<!-- product-brief-sync:begin -->
-_Template maintainer: no product AGENT.md. Children write AGENT.md before init._
-<!-- product-brief-sync:end -->
+Format: `≡ƒö▓ [AGENT][LOCAL] Short task ΓÇö scope: path/prefix` (or `[CLOUD]`). Sequential `[AGENT]` first. Parallel scopes: [`docs/PARALLEL_AGENT_SCOPES.md`](docs/PARALLEL_AGENT_SCOPES.md). `/build` on This Computer picks LOCAL only; Cloud picks CLOUD only. HUMAN/ADB after automation ΓåÆ `HUMAN_BACKLOG.md`.
 
-Live board for **this template repo**. Finished work: [`COMPLETED_TASKS.md`](COMPLETED_TASKS.md). Child products use [`BUILD_PLAN_TEMPLATE.md`](BUILD_PLAN_TEMPLATE.md) (copied onto their `BUILD_PLAN.md` at init).
-
-**Who:** `AGENT` code · `HUMAN` person · `ADB` device · `AUTO` CI/scripts
-**Venue (AGENT only):** `[LOCAL]` This Computer · `[CLOUD]` Cursor Cloud — see [`docs/adr/0008-agent-venue.md`](docs/adr/0008-agent-venue.md)
-**State:** 🔲 open · ✅ done · ❌ blocked — reason
-
-Format: `🔲 [AGENT][LOCAL] Short task — scope: path/prefix` (or `[CLOUD]`). Sequential `[AGENT]` first. Parallel scopes: [`docs/PARALLEL_AGENT_SCOPES.md`](docs/PARALLEL_AGENT_SCOPES.md). `/build` on This Computer picks LOCAL only; Cloud picks CLOUD only. HUMAN/ADB after automation → `HUMAN_BACKLOG.md`.
+This file is the **child model**. After `init-project`, it becomes your `BUILD_PLAN.md`. On the bootstrap template, the live maintainer board is [`BUILD_PLAN.md`](BUILD_PLAN.md).
 
 ## Smoke gate (hard stop)
 
 After every `[AGENT]` row: `python3 scripts/agent-run.py watch-agent-gates --once --autofix --scope auto`
 
-After the **last** `[AGENT]`/`[AUTO]` row in a sprint is ✅, do **not** start the next sprint until this exits 0:
+After the **last** `[AGENT]`/`[AUTO]` row in a sprint is Γ£à, do **not** start the next sprint until this exits 0:
 
 ```bash
 python3 scripts/agent-run.py smoke-sprint --require
 
 ```
 
-That command re-smokes **every** ✅ row: no errors or crashes, plus startup time and load order. Details: [`docs/SPRINT_SMOKE.md`](docs/SPRINT_SMOKE.md). Fail → leave the last row open or ❌; fix; re-run. `/gates` wrap-up includes the same check.
+That command re-smokes **every** Γ£à row: no errors or crashes, plus startup time and load order. Details: [`docs/SPRINT_SMOKE.md`](docs/SPRINT_SMOKE.md). Fail ΓåÆ leave the last row open or Γ¥î; fix; re-run. `/gates` wrap-up includes the same check.
 
 ---
 
-## Template Maintainer
+## Product
 
-**Now:** AGENT board empty. After Cloud work, `/resume`. Child model: [`BUILD_PLAN_TEMPLATE.md`](BUILD_PLAN_TEMPLATE.md).
+Copy this shape when you add sprints: `### Sprint N ΓÇö title`, then numbered rows. Keep it this short.
 
-> **v1.8.0** release archived in COMPLETED_TASKS.md @ `1cafc11`.
-> **M64** archived in COMPLETED_TASKS.md @ `86bc12c`.
-> **M63** archived in COMPLETED_TASKS.md @ `9b7870b`.
-> **v1.6.0** release archived in COMPLETED_TASKS.md @ `d4cb35b`.
-> **M62** archived in COMPLETED_TASKS.md @ `81d165b`.
-> **v1.5.0** release archived in COMPLETED_TASKS.md @ `9808229`.
-> **v1.4.0** release archived in COMPLETED_TASKS.md @ `f105c3b`.
-> **v1.3.0** release archived in COMPLETED_TASKS.md @ `7ca6dbf`.
-> **M61** archived in COMPLETED_TASKS.md @ `ca0edfb`.
-> **M60** archived in COMPLETED_TASKS.md @ `ca0edfb`.
-> **M59** archived in COMPLETED_TASKS.md @ `ca0edfb`.
-> **M58** archived in COMPLETED_TASKS.md @ `ca0edfb`.
-> **M57** archived in COMPLETED_TASKS.md @ `e65513d`. Nav smoke ADB archived 2026-09-10.
-> **Waiting HUMAN/ADB auto** archived in COMPLETED_TASKS.md @ `ca0edfb`.
+### Product (do not drift)
 
-### UX & UI inventory
+> Auto-managed from `AGENT.md` after init. Do not hand-edit inside markers. Read `AGENT.md` before any sprint row.
 
-Complete list from construction gaps and `/ux-review`. Status is only planned / in_progress / done. `/build` does not execute these until `/ux-apply UX-NNN` (or a Sequential row).
+<!-- product-brief-sync:begin -->
+> Read `AGENT.md` before any sprint row.
 
-<!-- ux-inventory:begin -->
-_No UX inventory items._
-<!-- ux-inventory:end -->
+**One-liner:** Offline PWA that lets a StarRupture player plan a West-to-East city layout from a curated unlock checklist, with no internet connection.
+**Do not drift:** starrupture, city planning, west-to-east, unlock checklist, offline pwa, localstorage, grid layout, pwa, web
 
-### Local agent (This Computer)
+**Rules:**
+- LocalStorage-only persistence; no API, no backend, no telemetry.
+- Keep FOSS (MIT); no paid SaaS, no analytics, no third-party runtime deps.
+- Lighthouse performance / a11y / best-practices budgets stay ΓëÑ 0.9 (see `docs/DESIGN_GUIDE.md` and `.lighthouserc.json`).
+- Static data (unlock checklist) Γëñ 300 lines per file; pure logic Γëñ 150 lines per file (repo hard limits).
+- i18n: strings in `src/locales/en.json` (default) and `src/locales/es.json`; never inline copy in components.
+- Machine QA only ΓÇö do not ask a human to review every frame/step of a layout.
+- Do not overwrite the Sacred `branding/` vector assets (`branding/BRANDING.md`).
 
-Standing queue for This Computer. Rows: `🔲 [AGENT][LOCAL] … — scope: path`. `/build` and `/feature` claim these only. Isolation: [`docs/adr/0008-agent-venue.md`](docs/adr/0008-agent-venue.md).
+**First milestone:** Unlock-checklist data model + seeded localStorage persistence + a working grid view where the user can place/checklist-toggle buildings and save their plan ΓÇö fully offline, Lighthouse ΓëÑ 0.9 floors met.
+<!-- product-brief-sync:end -->
 
-<!-- local-agent-lane:begin -->
-_No local agent items._
-<!-- local-agent-lane:end -->
+### Sprint 0 ΓÇö Customize
 
-### Cloud agent (Cursor Cloud)
+<!-- parallel_exception: stack not selected until init -->
 
-Standing queue for Cursor Cloud Agents. Rows: `🔲 [AGENT][CLOUD] … — scope: path`. Cloud claims these only (`cursor/*` branches). Never edit Local lane or `[LOCAL]` rows.
+1. Γ£à [AGENT][LOCAL] Copy `AGENT.md.example` ΓåÆ `AGENT.md` and paste the original brief verbatim (before init) ΓÇö scope: AGENT.md
+2. Γ£à [AGENT][LOCAL] Run `scripts/init-project.sh` or `.ps1` (`--stack`; scripted: `--non-interactive --project-name --purpose`) ΓÇö scope: scripts/
+3. Γ£à [AGENT][LOCAL] Fill `branding/product.json` (`mode: product`); sync tokens + README ΓÇö scope: branding/
+4. Γ£à [AGENT][LOCAL] Run `scripts/setup-github-repo.sh` (`gh` admin) ΓÇö scope: scripts/
+5. ≡ƒö▓ [AUTO] Sprint 0 sign-off on `main`: `validate-bootstrap --quick` ┬╖ `feature-gate --stack <active>` ┬╖ `check-github-ci --wait 300` (CI, Security Scan, CodeQL) ┬╖ `check-license-compliance`
+6. Γ£à [HUMAN] Use this template on GitHub ΓÇö repo `edwardlthompson/starrupture-city-planner` created from template (public)
+7. Γ£à [HUMAN] Pick FOSS vs Commercial (`init-project.sh --distribution-tier`) ΓÇö **FOSS locked**: `bootstrap.config.json` `distribution_tier: foss`, MIT
+8. Γ£à [HUMAN] Fill `docs/INITIALIZATION_PROMPT.md` ΓÇö filled: dimensions, goals, non-goals, success metrics, FOSS/MIT distribution
+9. Γ£à [HUMAN] Pick Cursor mode (`docs/CURSOR_MODES.md`) ΓÇö **Not using Cursor**: Cline in VS Code (see `.vscode/`); `/bootstrap`-equivalent via batch scripts
+10. Γ£à [HUMAN] Bookmark `docs/help/BATCH_COMMANDS.md` (`/bootstrap`) ΓÇö bookmarked in VS Code; run the batch scripts directly (`python scripts/agent-run.py ΓÇª`)
 
-<!-- cloud-agent-lane:begin -->
-_No cloud agent items._
-<!-- cloud-agent-lane:end -->
+### Sprint 1 ΓÇö Core domain & building catalog
+
+<!-- parallel_exception: domain types are the shared lock; Sprint 2+ UI slices depend on them -->
+
+StarRupture's fixed building set + unlock model. Lock before any UI.
+
+1. ≡ƒö▓ [AGENT][LOCAL] Define domain types + runtime validation ΓÇö `Building`, `UnlockEntry`, `LayoutCell`, `CityLayout` (unit tests) ΓÇö scope: examples/web/src/core/
+2. ≡ƒö▓ [AGENT][LOCAL] Seed the StarRupture building catalog + unlock checklist as static data (tests) ΓÇö scope: examples/web/src/data/
+3. ≡ƒö▓ [AGENT][LOCAL] Pure logic: unlock status, WestΓåÆEast ordering, placement rules (tests) ΓÇö scope: examples/web/src/logic/
+4. ≡ƒö▓ [HUMAN] Provide the canonical building list + unlock order, verbatim from the game (source of truth) ΓÇö scope: examples/web/src/data/
+5. ≡ƒö▓ [AGENT][LOCAL] Enforce `check-file-limits` (static data Γëñ300 lines, logic Γëñ150); split as needed ΓÇö scope: examples/web/src/
+6. ≡ƒö▓ [HUMAN] Approve the domain model (ADR-0001) and Sprint 1
+
+### Sprint 2 ΓÇö Golden Path: unlock checklist + building library
+
+<!-- agent_count_target: 3 -->
+
+First end-to-end vertical slice: mark what's unlocked, browse the building set.
+
+#### Sequential
+1. ≡ƒö▓ [AGENT][LOCAL] Feature container + i18n keys (en/es) + route registration ΓÇö scope: examples/web/src/features/
+
+#### Parallel
+| Task | Owner | Scope |
+|------|-------|-------|
+| Unlock checklist component (mark unlocked/locked, search/filter) + unit tests | AGENT | `examples/web/src/features/unlock/` |
+| Building library component (grid, unlock state, filter) + unit tests | AGENT | `examples/web/src/features/library/` |
+| Playwright e2e for checklist + library (axe a11y) | AGENT | `examples/web/e2e/` |
+
+2. ≡ƒö▓ [HUMAN] Verify building names + unlock copy against the real game
+3. ≡ƒö▓ [HUMAN] Approve Sprint 2 after `smoke-sprint --require`
+
+### Sprint 3 ΓÇö Layout board (snap-to-grid drag/drop)
+
+<!-- agent_count_target: 3 -->
+
+Place unlocked buildings on a WestΓåÆEast grid with collision rules.
+
+#### Parallel
+| Task | Owner | Scope |
+|------|-------|-------|
+| Grid geometry + snap-to-grid math (unit tests) | AGENT | `examples/web/src/board/grid/` |
+| Drag/drop placement + overlap/collision rules (unit tests) | AGENT | `examples/web/src/board/dnd/` |
+| Board view + i18n (en/es) + view transitions | AGENT | `examples/web/src/board/ui/` |
+
+1. ≡ƒö▓ [HUMAN] Playtest layout UX (snap feel, grid size, WestΓåÆEast orientation)
+
+### Sprint 4 ΓÇö Persistence & PWA (offline)
+
+<!-- parallel_exception: service worker + PWA depend on the store; budget config spans the web root -->
+
+1. ≡ƒö▓ [AGENT][LOCAL] Save/Load to `localStorage` ΓÇö versioned schema + migration (tests) ΓÇö scope: examples/web/src/store/
+2. ≡ƒö▓ [AGENT][LOCAL] Offline service worker + `manifest.webmanifest` + install prompt ΓÇö scope: examples/web/src/pwa/
+3. ≡ƒö▓ [AGENT][LOCAL] Lighthouse perf/a11y/best-practice budgets + SW cache budget gate ΓÇö scope: examples/web/
+4. ≡ƒö▓ [HUMAN] Confirm install + offline behavior in a real browser
+
+### Sprint 5 ΓÇö Later scope (post-MVP)
+
+<!-- parallel_exception: roadmap items; each ships as its own vertical slice later -->
+
+1. ≡ƒö▓ [AGENT][LOCAL] Multi-city layout support (separate boards) ΓÇö scope: examples/web/src/
+2. ≡ƒö▓ [AGENT][LOCAL] Export/import layouts (JSON) ΓÇö scope: examples/web/src/
+3. ≡ƒö▓ [AGENT][LOCAL] Theming (light/dark, `prefers-color-scheme`) ΓÇö scope: examples/web/src/
+4. Γ£à [HUMAN] Prioritize post-MVP order ΓÇö **Theming first** (row 3), then Export/import (row 2), then Multi-city (row 1)
+
+### Waiting on a person
+
+> Retired: Android/ADB rows ΓÇö web-only stack (`bootstrap.config.json` stacks: `["web"]`); no Android SDK/AVD needed.
 
 ### Open PRs (synced)
 
-> Auto-managed. Do not hand-edit rows inside the markers. Run `python3 scripts/agent-run.py sync-open-prs-build-plan -- --apply` (or `/resume` / `/dependabot`).
+> Auto-managed on product repos too. Do not hand-edit rows inside the markers.
 
 <!-- open-prs-sync:begin -->
 - 🔲 [AUTO] Merge Dependabot [#3](https://github.com/edwardlthompson/starrupture-city-planner/pull/3) (Bump the android-dependencies group in /examples/android with 2 updates)
@@ -89,30 +151,46 @@ _No cloud agent items._
 
 ### Template gaps (synced)
 
-> Auto-managed Monday cron + `sync-template-gaps-build-plan`. Do not hand-edit inside markers. Plan-only — run `/upgrade` then name item numbers.
+> Auto-managed Monday cron + `sync-template-gaps-build-plan`. Do not hand-edit inside markers. Plan-only ΓÇö run `/upgrade` then name item numbers.
 
 <!-- template-gaps-sync:begin -->
 _No template gaps; .template-version matches upstream (or template maintainer N/A)._
 <!-- template-gaps-sync:end -->
 
-### Waiting on a person
+### UX & UI inventory
 
-_None._ Lightroom stub smoke is `feature-gate --stack lightroom` (Lua/SDK), not Plug-in Manager. Raster icons are `blender-icons` QA, not a HUMAN export.
+Complete list from construction gaps and `/ux-review`. Status is only planned / in_progress / done. `/build` does not execute these until `/ux-apply UX-NNN` (or a Sequential row). Follow [`docs/ux-ui-guidelines.md`](docs/ux-ui-guidelines.md) when shipping UI.
 
-Done on this board: **v1.8.0** · **M64** cost/brevity · **M63** Local/Cloud venues · **v1.6.0** · **M62** UX/UI construction law · **v1.5.0** · **v1.4.0** · **v1.3.0** · **M61** back/nav/gates · **M60** CI clarity · **M59** CI harden · **M58** ship CI + Espresso · **M57** Cursor + docs · **M56** desktop packaging · **M55** CI / security · **M54** catalog / Lightroom · **M53** Android distribution · **M52** UI / a11y / nav · **M51** CLI / API · **M50** chrome follow-through · **M49** Settings-only chrome · **M48** R8 + memory (#95 on `main`) · **M47** Cline + nav. Archive: `COMPLETED_TASKS.md`.
+<!-- ux-inventory:begin -->
+_No UX inventory items._
+<!-- ux-inventory:end -->
+
+### Local agent (This Computer)
+
+Standing queue for This Computer. Rows: `≡ƒö▓ [AGENT][LOCAL] ΓÇª ΓÇö scope: path`. `/build` claims these only. See [`docs/adr/0008-agent-venue.md`](docs/adr/0008-agent-venue.md).
+
+<!-- local-agent-lane:begin -->
+_No local agent items._
+<!-- local-agent-lane:end -->
+
+### Cloud agent (Cursor Cloud)
+
+Standing queue for Cursor Cloud. Rows: `≡ƒö▓ [AGENT][CLOUD] ΓÇª ΓÇö scope: path`. Cloud claims these only (`cursor/*`). Never edit Local lane or `[LOCAL]` rows.
+
+<!-- cloud-agent-lane:begin -->
+_No cloud agent items._
+<!-- cloud-agent-lane:end -->
 
 ---
 
 ## Ongoing Maintenance
 
-Not a checklist. GitHub Monday 07:00 UTC (`.github/workflows/weekly-health-check.yml`) already runs CI wait, security triage, upgrade-sim (template) or parent template-gap BUILD_PLAN sync (child), radar, `update-deps` dry-run, Dependabot leftover list, open-PR BUILD_PLAN sync, and latest-release SBOM. `/ship` owns pre-release and the release tag.
+Not a checklist. GitHub Monday cron (`.github/workflows/weekly-health-check.yml`) already runs CI wait, security triage, parent template-gap BUILD_PLAN sync (this child board), radar, `update-deps` dry-run, Dependabot leftover list, open-PR BUILD_PLAN sync, and latest-release SBOM. Upgrade-sim stays on the template maintainer repo. `/ship` owns pre-release and the release tag.
 
-Open Dependabot / Release Please PRs are mirrored into **Open PRs (synced)** above; child catch-up rows land in **Template gaps (synced)** — allowed board automation, not standing chore rows. After Cloud Agents, use `/resume` on This Computer.
-
-If Monday cron is red: Cursor Automation `weekly-maintain`, then Grok Bot 4–5. Do not put those chores back on this board. [`docs/GROK_BOTS.md`](docs/GROK_BOTS.md) · [`docs/CURSOR_AUTOMATIONS.commercial.md`](docs/CURSOR_AUTOMATIONS.commercial.md)
+If Monday cron is red: Cursor Automation `weekly-maintain`, then Grok Bot 4ΓÇô5. Do not put those chores back on this board. [`docs/GROK_BOTS.md`](docs/GROK_BOTS.md) ┬╖ [`docs/CURSOR_AUTOMATIONS.commercial.md`](docs/CURSOR_AUTOMATIONS.commercial.md)
 
 ---
 
 ## Archive
 
-Older sprints and releases: [`COMPLETED_TASKS.md`](COMPLETED_TASKS.md).
+Older sprints: [`COMPLETED_TASKS.md`](COMPLETED_TASKS.md).

@@ -1,23 +1,23 @@
 {
-  "mode": "template",
-  "name": "Golden Path",
-  "short_name": "GoldenPath",
-  "tagline": "FOSS apps with a clear path from idea to release",
-  "pitch": "Golden Path is the reference product identity shipped with agent-project-bootstrap: a privacy-respecting FOSS stack with design tokens, CI guardrails, and agent-ready sprints so you can go from template to a shippable app without reinventing the foundation.",
+  "mode": "product",
+  "name": "StarRupture City Planner",
+  "short_name": "StarRuptureCP",
+  "tagline": "Offline PWA to plan West-to-East StarRupture city layouts from an unlock checklist",
+  "pitch": "StarRupture City Planner is a fully offline, installable PWA that helps a StarRupture player sketch a West-to-East city layout before building it. Start from a curated unlock checklist, place and toggle buildings on a West-to-East strip, and save your plan — everything runs locally with LocalStorage persistence and no backend, no analytics, no third-party runtime dependencies. Built on the agent-project-bootstrap foundation with Lighthouse ≥ 0.9 floors.",
   "features": [
-    "Cross-stack design tokens with light, dark, and system themes",
-    "Labeled BUILD_PLAN sprints for humans, agents, and CI",
-    "Web PWA and Android FOSS golden-path stubs ready to prune or extend",
-    "Security defaults: Dependabot, CodeQL, gitleaks, and weekly triage docs",
-    "Replaceable branding kit — swap logos and colors when your identity is ready"
+    "Curated StarRupture building + unlock checklist as the core input (seeded, static data)",
+    "West-to-East layout editor with grid placement, keyboard-only nav, and reduced-motion support",
+    "LocalStorage-only persistence with versioned schema + migration — fully offline after first load",
+    "PWA: installable, service-worker precached, Lighthouse perf/a11y/best-practice ≥ 0.9 budgets",
+    "FOSS (MIT) — no cloud, no telemetry, no paid SaaS, no third-party runtime deps"
   ],
   "quick_start": [
-    "Clone the repo and run `./scripts/init-project.sh` (or `.\\scripts\\init-project.ps1` on Windows).",
-    "Open your coding agent and follow `docs/START_HERE.md`. First-time walk: `docs/help/TOUR.md` (Cursor: `/tour`).",
-    "Set `branding/product.json` `mode` to `product`, fill name/tagline/pitch, then run `python3 scripts/generate-project-readme.py`."
+    "Open the app (dev: `npm run dev` in `examples/web/` after `npm ci`).",
+    "Tap **Plan city** on the current (unlocked) city to open the West-to-East layout editor.",
+    "Place buildings from the unlock checklist, then **Save layout** — your plan persists offline and the next city unlocks."
   ],
-  "install": "Requirements depend on your active stack (Node 20+, Python 3.11+, Android SDK). See the active `modules/{stack}/MODULE.md` and `examples/{stack}/README.md`.",
-  "usage": "Use `/bootstrap` for Sprint 0, `/build` for features, and `/verify` before merge. Edit colors in `design-tokens/design-tokens.json` and logos in `branding/assets/`, then run `python3 scripts/sync-design-tokens.py`.",
+  "install": "No install required — installable PWA via browser or GitHub Pages. Local dev: Node 20+, then `cd examples/web && npm ci`. Build: `npm run build` (outputs `dist/`, deployed via `.github/workflows/pages.yml`).",
+  "usage": "Browse your cities West-to-East; tap **Plan city** to open the layout editor; place buildings from the unlock checklist and save. Your plan persists in LocalStorage and works offline. Use `/build` on `BUILD_PLAN.md` for next steps and `/gates` before merge.",
   "urls": {
     "docs": "docs/START_HERE.md",
     "contributing": "CONTRIBUTING.md",
@@ -25,17 +25,15 @@
     "license": "LICENSE",
     "design": "docs/DESIGN_GUIDE.md",
     "branding": "branding/BRANDING.md",
-    "github_repo": "edwardlthompson/agent-project-bootstrap"
+    "github_repo": "edwardlthompson/starrupture-city-planner"
   },
   "badge": {
-    "primary": "e94560",
+    "primary": "B3263E",
     "secondary": "4A5F82",
     "license": "2ea043",
     "foss": "656d76"
   },
   "stacks": [
-    "web",
-    "python",
-    "android"
+    "web"
   ]
 }

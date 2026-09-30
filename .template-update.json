@@ -1,6 +1,6 @@
 {
   "upstream": "edwardlthompson/agent-project-bootstrap",
-  "check_interval": "weekly",
+  "check_interval": "City",
   "last_checked": null,
   "notify_method": "stdout"
 }

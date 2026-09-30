@@ -34,12 +34,26 @@
 ## Persistent Context
 
 <!-- product-brief-sync:begin -->
-_Template maintainer: no product AGENT.md. Children write AGENT.md before init._
+> Read `AGENT.md` before any sprint row.
+
+**One-liner:** Offline PWA that lets a StarRupture player plan a West-to-East city layout from a curated unlock checklist, with no internet connection.
+**Do not drift:** starrupture, city planning, west-to-east, unlock checklist, offline pwa, localstorage, grid layout, pwa, web
+
+**Rules:**
+- LocalStorage-only persistence; no API, no backend, no telemetry.
+- Keep FOSS (MIT); no paid SaaS, no analytics, no third-party runtime deps.
+- Lighthouse performance / a11y / best-practices budgets stay ≥ 0.9 (see `docs/DESIGN_GUIDE.md` and `.lighthouserc.json`).
+- Static data (unlock checklist) ≤ 300 lines per file; pure logic ≤ 150 lines per file (repo hard limits).
+- i18n: strings in `src/locales/en.json` (default) and `src/locales/es.json`; never inline copy in components.
+- Machine QA only — do not ask a human to review every frame/step of a layout.
+- Do not overwrite the Sacred `branding/` vector assets (`branding/BRANDING.md`).
+
+**First milestone:** Unlock-checklist data model + seeded localStorage persistence + a working grid view where the user can place/checklist-toggle buildings and save their plan — fully offline, Lighthouse ≥ 0.9 floors met.
 <!-- product-brief-sync:end -->
 
 ### Project Purpose
 
-FOSS coding-agent bootstrap template: labeled BUILD_PLAN sprints, Golden Path examples, CI guardrails, workspace memory, and design-system cohesion across Web and Android.
+StarRupture City Planner: offline-first PWA (Vite + TypeScript) that generates optimal West-to-East StarRupture city grids from a user-defined unlock checklist (Corporation levels, buildings, resources). Fully offline via service worker; hosted on GitHub Pages.
 
 ### Key Constraints
 

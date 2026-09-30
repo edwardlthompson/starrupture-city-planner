@@ -1,9 +1,9 @@
 {
   "template_version": "1.8.0",
   "project": {
-    "name": "agent-project-bootstrap",
-    "purpose": "GitHub Template for FOSS coding-agent projects",
-    "stack": "multi"
+    "name": "StarRupture",
+    "purpose": "Offline PWA to plan West-to-East StarRupture city layouts from an unlock checklist",
+    "stack": "web"
   },
   "entry_points": {
     "bootstrap": "docs/START_HERE.md",

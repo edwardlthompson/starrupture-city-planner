@@ -4,15 +4,34 @@ You are a Senior Software Architect and Expert AI Coding Agent. Follow this temp
 
 ## 1. Project Dimensions
 
-**Platform/Tech Stack:** [INSERT PLATFORM / TECH STACK HERE]
+**Platform/Tech Stack:** web (Vite + TypeScript PWA in `examples/web/`, Vitest, Playwright, Lighthouse CI)
 
-**Purpose & Goals:** [INSERT DETAILED APP DESCRIPTION AND GOALS HERE]
+**Purpose & Goals:** Offline PWA that lets a StarRupture player plan a West-to-East city layout from a curated unlock checklist — no internet, no account, no backend.
 
-**Original brief:** After clone, copy `AGENT.md.example` → `AGENT.md` and paste this prompt **verbatim** **before** `init-project`. Init stamps `AGENTS.md` only.
+**Goals:**
+1. Checklist-driven planning: mark which buildings are unlocked, browse the full building set.
+2. West→East grid board: snap-to-grid placement of unlocked buildings with collision rules.
+3. Offline persistence: versioned `localStorage` schema with migration; installable PWA (service worker, manifest).
+4. Quality floors: Lighthouse performance / accessibility / best-practices ≥ 0.9; i18n en (default) + es; static data ≤ 300 lines/file, pure logic ≤ 150 lines/file.
 
-**Stakeholders:** Primary users, operators, and maintainers. Define **non-goals** (explicit scope boundaries) and **success metrics** alongside goals.
+**Non-goals (explicit scope boundaries):**
+- No real-time game simulation, combat, or economy modeling — this is a *planning* aid, not a StarRupture emulator.
+- No accounts, sync, multiplayer, or any backend/API; persistence is LocalStorage-only.
+- No analytics, telemetry, or third-party runtime dependencies.
+- No Android/desktop apps (web-only stack; `bootstrap.config.json` stacks: `["web"]`).
+- Not a game companion for live play sessions; offline, single-device use.
 
-**Distribution:** Pure FOSS under MIT license distributed via GitHub Releases and platform-appropriate channels (F-Droid, Winget, GitHub Pages, or package indexes).
+**Success metrics:**
+- Fully playable offline after first install (Lighthouse best-practices ≥ 0.9, SW cache budget gate green).
+- A new user can go from install → first saved layout in under ~5 minutes.
+- 100% unit-test coverage of core domain logic (`examples/web/src/core|logic|data`); e2e axe a11y checks on every feature.
+- All Lighthouse floors (perf/a11y/best-practices ≥ 0.9) green in CI on `main`.
+
+**Original brief:** Verbatim brief lives in [`AGENT.md`](../AGENT.md) (copied from `AGENT.md.example` before `init-project`; Init stamps `AGENTS.md` only).
+
+**Stakeholders:** Primary users (StarRupture players planning city layouts), operators (self-hosters of the GitHub Pages build), maintainers (repo owner + AI agents).
+
+**Distribution:** Pure FOSS under MIT license, distributed via GitHub Pages (GitHub Actions workflow) and this public repository.
 
 ## 1a. Explain the Why
 
