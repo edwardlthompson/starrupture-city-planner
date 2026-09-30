@@ -1,7 +1,7 @@
 # Build Plan — StarRupture City Planner
 
 <!-- remaining-tally -->
-**Remaining:** AGENT 7 · LOCAL 7 · CLOUD 0 · AUTO 3 · HUMAN 6 · ADB 0 · **16 open**
+**Remaining:** AGENT 6 · LOCAL 6 · CLOUD 0 · AUTO 3 · HUMAN 6 · ADB 0 · **15 open**
 <!-- /remaining-tally -->
 
 Live board for this product repo. Finished work: [`COMPLETED_TASKS.md`](COMPLETED_TASKS.md).
@@ -112,9 +112,9 @@ Place unlocked buildings on a West→East grid with collision rules.
 #### Parallel
 | Task | Owner | Scope |
 |------|-------|-------|
-| Grid geometry + snap-to-grid math (unit tests) | AGENT[LOCAL] | `examples/web/src/board/grid/` |
-| Drag/drop placement + overlap/collision rules (unit tests) | AGENT[LOCAL] | `examples/web/src/board/dnd/` |
-| Board view + i18n (en/es) + view transitions | AGENT[LOCAL] | `examples/web/src/board/ui/` |
+| ✅ Grid geometry + snap-to-grid math (unit tests) | AGENT[LOCAL] | `examples/web/src/board/grid/` |
+| ✅ Drag/drop placement + overlap/collision rules (unit tests) | AGENT[LOCAL] | `examples/web/src/board/dnd/` |
+| ✅ Board view + i18n (en/es) + view transitions | AGENT[LOCAL] | `examples/web/src/board/ui/` |
 
 1. 🔲 [HUMAN] Playtest layout UX (snap feel, grid size, West→East orientation)
 

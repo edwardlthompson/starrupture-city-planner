@@ -1,8 +1,14 @@
+import type { LayoutCell } from "../core/types";
 import { t } from "../i18n";
 import { createUnlockChecklist } from "./unlock/UnlockChecklist";
 import { createBuildingLibrary } from "./library/BuildingLibrary";
+import { createBoardView } from "../board/ui/index";
+import { dropBuilding, createEmptyBoard } from "../board/dnd/index";
+import { GRID_SLOTS } from "../board/grid/index";
+import { STARRUPTURE_BUILDINGS } from "../data/buildings";
 
 const STORAGE_KEY = "planner.highestUnlockedOrder";
+const CELLS_KEY = "planner.layoutCells";
 
 function loadOrder(): number {
   try {
@@ -23,6 +29,26 @@ function saveOrder(order: number): void {
   }
 }
 
+function loadCells(): LayoutCell[] {
+  try {
+    const raw = localStorage.getItem(CELLS_KEY);
+    if (raw === null) return createEmptyBoard();
+    const parsed: unknown = JSON.parse(raw);
+    if (Array.isArray(parsed)) return parsed as LayoutCell[];
+    return createEmptyBoard();
+  } catch {
+    return createEmptyBoard();
+  }
+}
+
+function saveCells(cells: LayoutCell[]): void {
+  try {
+    localStorage.setItem(CELLS_KEY, JSON.stringify(cells));
+  } catch {
+    // storage unavailable
+  }
+}
+
 export type PlannerPanelProps = {
   onClose: () => void;
 };
@@ -30,6 +56,7 @@ export type PlannerPanelProps = {
 export function createPlannerPanel(props: PlannerPanelProps): HTMLElement {
   const { onClose } = props;
   let highestOrder = loadOrder();
+  let cells = loadCells();
 
   const panel = document.createElement("div");
   panel.className = "planner-panel";
@@ -37,7 +64,6 @@ export function createPlannerPanel(props: PlannerPanelProps): HTMLElement {
   panel.setAttribute("role", "dialog");
   panel.setAttribute("aria-label", t("planner.title"));
 
-  // Header
   const header = document.createElement("div");
   header.className = "planner-header";
   const h2 = document.createElement("h2");
@@ -54,7 +80,6 @@ export function createPlannerPanel(props: PlannerPanelProps): HTMLElement {
   header.appendChild(closeBtn);
   panel.appendChild(header);
 
-  // Shared search field (filters both checklist and library)
   const searchWrap = document.createElement("div");
   searchWrap.className = "planner-search-wrap";
   const searchInput = document.createElement("input");
@@ -65,10 +90,32 @@ export function createPlannerPanel(props: PlannerPanelProps): HTMLElement {
   searchInput.placeholder = t("planner.checklist.search");
   searchWrap.appendChild(searchInput);
 
-  // Sections
   const body = document.createElement("div");
   body.className = "planner-body";
 
+  const boardHost = document.createElement("div");
+  boardHost.className = "planner-board-host";
+  const board = createBoardView(boardHost, STARRUPTURE_BUILDINGS, {
+    onCellsChange: (next: LayoutCell[]) => {
+      cells = next;
+      saveCells(cells);
+    },
+  });
+
+  function placeFromLibrary(buildingId: string): void {
+    const building = STARRUPTURE_BUILDINGS.find((b) => b.id === buildingId);
+    if (!building) return;
+    for (let slot = 0; slot < GRID_SLOTS; slot++) {
+      const result = dropBuilding(cells, building, slot);
+      if (result.ok) {
+        cells = result.value;
+        saveCells(cells);
+        board.render(cells);
+        return;
+      }
+    }
+    // No room: leave the board unchanged.
+  }
   function renderSections(): void {
     body.innerHTML = "";
     const query = searchInput.value;
@@ -83,17 +130,21 @@ export function createPlannerPanel(props: PlannerPanelProps): HTMLElement {
     });
     body.appendChild(checklist);
 
-    const library = createBuildingLibrary({ highestUnlockedOrder: highestOrder });
+    const library = createBuildingLibrary({
+      highestUnlockedOrder: highestOrder,
+      onPlaceBuilding: placeFromLibrary,
+    });
     body.appendChild(library);
   }
 
   searchInput.addEventListener("input", () => {
     renderSections();
   });
-
   renderSections();
+  board.render(cells);
   panel.appendChild(searchWrap);
   panel.appendChild(body);
+  panel.appendChild(boardHost);
 
   return panel;
 }

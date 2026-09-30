@@ -7,10 +7,12 @@ export type LibraryFilter = "all" | "unlocked" | "locked";
 
 export type BuildingLibraryProps = {
   highestUnlockedOrder: number;
+  /** When provided, clicking an unlocked card places that building on the board. */
+  onPlaceBuilding?: (buildingId: string) => void;
 };
 
 export function createBuildingLibrary(props: BuildingLibraryProps): HTMLElement {
-  const { highestUnlockedOrder } = props;
+  const { highestUnlockedOrder, onPlaceBuilding } = props;
 
   const section = document.createElement("section");
   section.setAttribute("data-testid", "building-library");
@@ -74,6 +76,12 @@ export function createBuildingLibrary(props: BuildingLibraryProps): HTMLElement 
     badge.className = "planner-badge";
     badge.textContent = unlocked ? t("planner.checklist.unlocked") : t("planner.checklist.locked");
     card.appendChild(badge);
+
+    if (unlocked && onPlaceBuilding) {
+      card.setAttribute("data-testid", `library-card-${building.id}`);
+      card.addEventListener("click", () => onPlaceBuilding(building.id));
+      card.title = t("planner.library.place_hint");
+    }
 
     grid.appendChild(card);
   }
